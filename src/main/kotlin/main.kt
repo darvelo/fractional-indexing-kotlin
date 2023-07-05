@@ -31,7 +31,7 @@ private fun midpoint(a: String, b: String?, digits: String): String {
         // remove longest common prefix.  pad `a` with 0s as we
         // go.  note that we don't need to pad `b`, because it can't
         // end before `a` while traversing the common prefix.
-        var n: Int = 0
+        var n = 0
         while (true) {
             val aChar: Char = if (n >= a.length) zero else a[n]
             val bChar = if (n >= b.length) zero else b[n]
@@ -83,9 +83,9 @@ private fun validateInteger(int: String) {
  */
 private fun getIntegerLength(head: String): Int {
     return if (head >= "a" && head <= "z") {
-        head.codePointAt(0) - "a".codePointAt(0) + 2
+        head[0].code - 'a'.code + 2
     } else if (head >= "A" && head <= "Z") {
-        "Z".codePointAt(0) - head.codePointAt(0) + 2
+        'Z'.code - head[0].code + 2
     } else {
         throw Exception("invalid order key head: $head")
     }
@@ -153,7 +153,7 @@ private fun incrementInteger(x: String, digits: String): String? {
         if (head == "z") {
             return null
         }
-        val h = (head.codePointAt(0) + 1).toChar().toString()
+        val h = (head[0].code + 1).toChar().toString()
         if (h > "a") {
             digs.add(digits[0].toString())
         } else {
@@ -196,7 +196,7 @@ private fun decrementInteger(x: String, digits: String): String? {
         if (head == "A") {
             return null
         }
-        val h = (head.codePointAt(0) - 1).toChar().toString()
+        val h = (head[0].code - 1).toChar().toString()
         if (h < "Z") {
             digs.add(digits.last().toString())
         } else {
@@ -242,8 +242,7 @@ fun generateKeyBetween(a: String?, b: String?, digits: String = BASE_62_DIGITS):
         if (ib < b) {
             return ib
         }
-        val res = decrementInteger(ib, digits) ?: throw Exception("cannot decrement any more")
-        return res
+        return decrementInteger(ib, digits) ?: throw Exception("cannot decrement any more")
     }
 
     if (b == null) {
