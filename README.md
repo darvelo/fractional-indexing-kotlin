@@ -6,6 +6,56 @@ This port is based on the [rocicorp/fractional-indexing](https://github.com/roci
 
 This is compatible with Kotlin Multiplatform as it makes use of only the Kotlin standard library (no JVM-specific code).
 
+# Example Usage
+
+```
+class Usages {
+
+    fun generateKeys() {
+        val first = generateKeyBetween(null, null); // "a0"
+        // Insert after 1st
+        val second = generateKeyBetween(first, null); // "a1"
+        // Insert after 2nd
+        val third = generateKeyBetween(second, null); // "a2"
+        // Insert before 1st
+        val zeroth = generateKeyBetween(null, first); // "Zz"
+        // Insert in between 2nd and 3rd (midpoint)
+        val secondAndHalf = generateKeyBetween(second, third); // "a1V"
+
+        val beforeZeroth = generateKeyBetween(null, zeroth)
+        println(first)
+        println(second)
+        println(third)
+        println(zeroth)
+        println(secondAndHalf)
+        println(beforeZeroth)
+    }
+
+    fun generateNKeys() {
+        val (first, second) = generateNKeysBetween(null, null, 2); // ['a0', 'a1']
+        // Insert after 2nd
+        val nextSet = generateKeyBetween(second, null); // "a2"
+        // Insert two keys after 2nd
+        val (secondAgain, third) = generateNKeysBetween(second, null, 2); // ['a2', 'a3']
+        // Insert two keys before 1st
+        val twoMore = generateNKeysBetween(null, first, 2); // ['Zy', 'Zz']
+        // Insert two keys in between 1st and 2nd (midpoints)
+        val betweenKeys = generateNKeysBetween(first, second, 2); // ['a0G', 'a0V']
+
+        println("$first, $second")
+        println(nextSet)
+        println("$secondAgain, $third")
+        println(twoMore)
+        println(betweenKeys)
+    }
+}
+
+fun main() {
+    Usages().generateKeys()
+    Usages().generateNKeys()
+}
+```
+
 # Acknowledgements
 
 [rocicorp](https://github.com/rocicorp) for the original code implemented in JavaScript, located at https://github.com/rocicorp/fractional-indexing, and ported to Kotlin in this repo.

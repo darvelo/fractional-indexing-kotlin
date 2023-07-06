@@ -1,6 +1,13 @@
-import org.junit.Test
+package com.davidarvelo.fractionalindexing
 
-class FractionalIndexingTests {
+import kotlin.test.Test
+import kotlin.test.assertEquals
+
+// License: CC0 (no rights reserved).
+
+// This is based on https://observablehq.com/@dgreensp/implementing-fractional-indexing
+
+class FractionalIndexingTest {
     @Test
     fun testAllCases() {
         test(null, null, "a0")
@@ -85,8 +92,8 @@ class FractionalIndexingTests {
         /** @type {string} */
         val act: String
         try {
-            act = generateKeyBetween(a, b)
-            assert(exp == act) { "$exp == $act" }
+            act = FractionalIndexing.generateFractionalIndexBetween(a, b)
+            assertEquals(exp, act,"$exp == $act")
         } catch (exception: Exception) {
             if (exceptionMessage != null) {
                 if (exception.message != exceptionMessage) {
@@ -109,12 +116,12 @@ class FractionalIndexingTests {
         /** @type {string} */
         val act: String
         try {
-            act = generateNKeysBetween(a, b, n, BASE_10_DIGITS).joinToString(" ")
+            act = FractionalIndexing.generateNFractionalIndicesBetween(a, b, n, BASE_10_DIGITS).joinToString(" ")
         } catch (exception: Exception) {
             throw exception
         }
 
-        assert(exp == act) { "$exp == $act" }
+        assertEquals(exp, act, "$exp == $act")
     }
 
     /**
@@ -127,8 +134,8 @@ class FractionalIndexingTests {
         /** @type {string} */
         val act: String
         try {
-            act = generateKeyBetween(a, b, BASE_95_DIGITS)
-            assert(exp == act) { "$exp == $act" }
+            act = FractionalIndexing.generateFractionalIndexBetween(a, b, BASE_95_DIGITS)
+            assertEquals(exp, act,"$exp == $act")
         } catch (exception: Exception) {
             if (exceptionMessage != null) {
                 if (exception.message != exceptionMessage) {
