@@ -1,16 +1,25 @@
 plugins {
     kotlin("multiplatform") version "1.8.22"
     id("com.android.library")
-    id("maven-publish")
+    id("io.github.gradle-nexus.publish-plugin") version "1.3.0"
 }
 
-group = "com.davidarvelo"
-version = "3.2.0"
+ext["PUBLISH_GROUP_ID"] = "com.davidarvelo"
+ext["PUBLISH_VERSION"] = "3.2.0"
+ext["PUBLISH_ARTIFACT_ID"] = "fractional-indexing"
+
+apply(from = "${rootDir}/scripts/publish-root.gradle")
+apply(from = "${rootProject.projectDir}/scripts/publish-module.gradle")
 
 repositories {
     google()
     mavenCentral()
 }
+
+//group = "com.davidarvelo"
+//version = "3.2.0"
+group = ext["PUBLISH_GROUP_ID"]!!
+version = ext["PUBLISH_VERSION"]!!
 
 kotlin {
     jvm {
@@ -139,5 +148,11 @@ android {
         getByName("release") {
             isMinifyEnabled = true
         }
+    }
+}
+
+task("listComponents") {
+    afterEvaluate {
+        println("Components: " + components.map { it.name })
     }
 }

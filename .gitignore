@@ -14,3 +14,6 @@ Pods/
 *yarn.lock
 .sw[o-z]
 .*.sw[o-z]
+*.hprof
+secret.properties
+private.key
