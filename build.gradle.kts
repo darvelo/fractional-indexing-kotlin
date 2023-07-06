@@ -1,10 +1,10 @@
 plugins {
-    kotlin("multiplatform") version "1.8.21"
+    kotlin("multiplatform") version "1.8.22"
     id("com.android.library")
     id("maven-publish")
 }
 
-group = "com.davidarvelo.fractionalindexing"
+group = "com.davidarvelo"
 version = "3.2.0"
 
 repositories {
@@ -15,7 +15,7 @@ repositories {
 kotlin {
     jvm {
         compilations.all {
-            kotlinOptions.jvmTarget = "1.8"
+            kotlinOptions.jvmTarget = "11"
         }
         testRuns["test"].executionTask.configure {
             useJUnitPlatform()
@@ -103,9 +103,9 @@ kotlin {
         val iosX64Test by getting
         val androidMain by getting
         val androidInstrumentedTest by getting {
-            dependencies {
-                implementation("junit:junit:4.13.2")
-            }
+//            dependencies {
+//                implementation("junit:junit:4.13.2")
+//            }
         }
         val linuxX64Main by getting
         val linuxX64Test by getting
@@ -120,17 +120,21 @@ android {
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml") // Create AndroidManifest.xml and provide path to it
     namespace = "com.davidarvelo.fractionalindexing"
     compileSdk = 33
+
+    kotlin {
+        jvmToolchain(11)
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
     defaultConfig {
-//        applicationId = "com.davidarvelo.library"
         minSdk = 23
         targetSdk = 33
-//        versionCode = 1
-//        versionName = "1.0"
     }
     buildTypes {
         getByName("debug") {
             isMinifyEnabled = false
-//            applicationIdSuffix = ".debug"
         }
         getByName("release") {
             isMinifyEnabled = true
