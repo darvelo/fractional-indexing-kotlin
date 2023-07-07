@@ -10,7 +10,7 @@ This is compatible with Kotlin Multiplatform as it makes use of only the Kotlin 
 
 You can add this library as a dependency in Gradle in a Kotlin or Kotlin Multiplatform project:
 
-```
+```gradle
 dependencies {
     // ...
     implementation("com.davidarvelo:fractional-indexing:${latestVersion}")
