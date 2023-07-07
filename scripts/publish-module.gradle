@@ -1,6 +1,7 @@
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
+// TODO(david): Update this file to Kotlin Gradle.
 task androidSourcesJar(type: Jar) {
     archiveClassifier.set('sources')
 //    if (project.plugins.findPlugin("com.android.library")) {
@@ -23,6 +24,7 @@ artifacts {
 group = PUBLISH_GROUP_ID
 version = PUBLISH_VERSION
 
+// TODO(david): Update all these duplicate declarations once this file is written in Kotlin, using the template in https://dev.to/kotlin/how-to-build-and-publish-a-kotlin-multiplatform-library-going-public-4a8k.
 model {
     publishing {
         publications {
