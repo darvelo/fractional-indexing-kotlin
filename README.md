@@ -19,21 +19,21 @@ dependencies {
 
 # Example Usage
 
-```
+```kotlin
 class Usages {
 
-    fun generateKeys() {
-        val first = generateKeyBetween(null, null); // "a0"
+    fun generateFractionalIndexBetween() {
+        val first = FractionalIndexing.generateFractionalIndexBetween(null, null); // "a0"
         // Insert after 1st
-        val second = generateKeyBetween(first, null); // "a1"
+        val second = FractionalIndexing.generateFractionalIndexBetween(first, null); // "a1"
         // Insert after 2nd
-        val third = generateKeyBetween(second, null); // "a2"
+        val third = FractionalIndexing.generateFractionalIndexBetween(second, null); // "a2"
         // Insert before 1st
-        val zeroth = generateKeyBetween(null, first); // "Zz"
+        val zeroth = FractionalIndexing.generateFractionalIndexBetween(null, first); // "Zz"
         // Insert in between 2nd and 3rd (midpoint)
-        val secondAndHalf = generateKeyBetween(second, third); // "a1V"
+        val secondAndHalf = FractionalIndexing.generateFractionalIndexBetween(second, third); // "a1V"
 
-        val beforeZeroth = generateKeyBetween(null, zeroth)
+        val beforeZeroth = FractionalIndexing.generateFractionalIndexBetween(null, zeroth)
         println(first)
         println(second)
         println(third)
@@ -42,16 +42,16 @@ class Usages {
         println(beforeZeroth)
     }
 
-    fun generateNKeys() {
-        val (first, second) = generateNKeysBetween(null, null, 2); // ['a0', 'a1']
+    fun generateNFractionalIndicesBetween() {
+        val (first, second) = FractionalIndexing.generateNFractionalIndicesBetween(null, null, 2); // ['a0', 'a1']
         // Insert after 2nd
-        val nextSet = generateKeyBetween(second, null); // "a2"
+        val nextSet = FractionalIndexing.generateFractionalIndexBetween(second, null); // "a2"
         // Insert two keys after 2nd
-        val (secondAgain, third) = generateNKeysBetween(second, null, 2); // ['a2', 'a3']
+        val (secondAgain, third) = FractionalIndexing.generateNFractionalIndicesBetween(second, null, 2); // ['a2', 'a3']
         // Insert two keys before 1st
-        val twoMore = generateNKeysBetween(null, first, 2); // ['Zy', 'Zz']
+        val twoMore = FractionalIndexing.generateNFractionalIndicesBetween(null, first, 2); // ['Zy', 'Zz']
         // Insert two keys in between 1st and 2nd (midpoints)
-        val betweenKeys = generateNKeysBetween(first, second, 2); // ['a0G', 'a0V']
+        val betweenKeys = FractionalIndexing.generateNFractionalIndicesBetween(first, second, 2); // ['a0G', 'a0V']
 
         println("$first, $second")
         println(nextSet)
@@ -62,8 +62,8 @@ class Usages {
 }
 
 fun main() {
-    Usages().generateKeys()
-    Usages().generateNKeys()
+    Usages().generateFractionalIndexBetween()
+    Usages().generateNFractionalIndicesBetween()
 }
 ```
 
