@@ -6,6 +6,17 @@ This port is based on the [rocicorp/fractional-indexing](https://github.com/roci
 
 This is compatible with Kotlin Multiplatform as it makes use of only the Kotlin standard library (no JVM-specific code).
 
+# Installation
+
+You can add this library as a dependency in Gradle in a Kotlin or Kotlin Multiplatform project:
+
+```
+dependencies {
+    // ...
+    implementation("com.davidarvelo:fractional-indexing:${latestVersion}")
+}
+```
+
 # Example Usage
 
 ```
