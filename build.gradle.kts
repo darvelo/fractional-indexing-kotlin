@@ -5,7 +5,7 @@ plugins {
 }
 
 ext["PUBLISH_GROUP_ID"] = "com.davidarvelo"
-ext["PUBLISH_VERSION"] = "3.2.0"
+ext["PUBLISH_VERSION"] = "3.2.1"
 ext["PUBLISH_ARTIFACT_ID"] = "fractional-indexing"
 
 apply(from = "${rootDir}/scripts/publish-root.gradle")
