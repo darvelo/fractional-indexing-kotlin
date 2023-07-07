@@ -267,11 +267,11 @@ afterEvaluate {
                     }
                 }
             }
-            release(MavenPublication) {
+            kotlinMultiplatform(MavenPublication) {
                 groupId PUBLISH_GROUP_ID
                 artifactId PUBLISH_ARTIFACT_ID
                 version PUBLISH_VERSION
-                from components.kotlin
+//                from components.kotlin
 //                if (project.plugins.findPlugin("com.android.library")) {
 //                    println("Components: " + components*.name)
 //                }
