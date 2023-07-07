@@ -17,3 +17,4 @@ Pods/
 *.hprof
 secret.properties
 private.key
+notes.md
