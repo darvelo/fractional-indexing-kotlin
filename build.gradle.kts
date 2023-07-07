@@ -1,7 +1,7 @@
 plugins {
     kotlin("multiplatform") version "1.8.22"
     id("com.android.library")
-    id("io.github.gradle-nexus.publish-plugin") version "1.3.0"
+    id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
 }
 
 ext["PUBLISH_GROUP_ID"] = "com.davidarvelo"
@@ -77,7 +77,6 @@ kotlin {
             }
         }
     }
-//    iosSimulatorArm64()
     iosSimulatorArm64 {
         binaries {
             framework {
@@ -127,7 +126,7 @@ kotlin {
 
 android {
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml") // Create AndroidManifest.xml and provide path to it
-    namespace = "com.davidarvelo.fractionalindexing"
+    namespace = "com.davidarvelo"
     compileSdk = 33
 
     kotlin {
@@ -143,9 +142,11 @@ android {
     }
     buildTypes {
         getByName("debug") {
+//            namespace = "com.davidarvelo.fractional-indexing-android-debug"
             isMinifyEnabled = false
         }
         getByName("release") {
+//            namespace = "com.davidarvelo.fractional-indexing-android"
             isMinifyEnabled = true
         }
     }
@@ -155,4 +156,12 @@ task("listComponents") {
     afterEvaluate {
         println("Components: " + components.map { it.name })
     }
+}
+
+val signingTasks: TaskCollection<Sign> = tasks.withType<Sign>()
+tasks.withType<PublishToMavenRepository>().configureEach {
+    mustRunAfter(signingTasks)
+}
+tasks.withType<PublishToMavenLocal>().configureEach {
+    mustRunAfter(signingTasks)
 }

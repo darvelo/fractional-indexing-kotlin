@@ -12,5 +12,5 @@ pluginManagement {
         }
     }
 }
-rootProject.name = "fractional-indexing"
 
+rootProject.name = "fractional-indexing"

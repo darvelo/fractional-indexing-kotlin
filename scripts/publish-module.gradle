@@ -3,13 +3,17 @@ apply plugin: 'signing'
 
 task androidSourcesJar(type: Jar) {
     archiveClassifier.set('sources')
-    if (project.plugins.findPlugin("com.android.library")) {
+//    if (project.plugins.findPlugin("com.android.library")) {
         from android.sourceSets.main.java.srcDirs
         from android.sourceSets.main.kotlin.srcDirs
-    } else {
-        from sourceSets.main.java.srcDirs
-        from sourceSets.main.kotlin.srcDirs
-    }
+//    } else {
+//        from sourceSets.main.java.srcDirs
+//        from sourceSets.main.kotlin.srcDirs
+//    }
+}
+
+task javadocJar(type: Jar) {
+    archiveClassifier.set('javadoc')
 }
 
 artifacts {
@@ -19,9 +23,250 @@ artifacts {
 group = PUBLISH_GROUP_ID
 version = PUBLISH_VERSION
 
+model {
+    publishing {
+        publications {
+            androidRelease {
+                artifact javadocJar
+                pom {
+                    name = PUBLISH_ARTIFACT_ID
+                    description = 'Generate strings (fractional indices) that can be used as sorting keys.'
+                    url = 'https://github.com/darvelo/fractional-indexing-kotlin'
+                    licenses {
+                        license {
+                            name = 'Creative Commons Zero v1.0 Universal'
+                            url = 'https://github.com/darvelo/fractional-indexing-kotlin/blob/main/LICENSE'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'darvelo'
+                            name = 'David Arvelo'
+                            email = 'david@davidarvelo.com'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:github.com/darvelo/fractional-indexing-kotlin.git'
+                        developerConnection = 'scm:git:ssh://github.com/darvelo/fractional-indexing-kotlin.git'
+                        url = 'https://github.com/darvelo/fractional-indexing-kotlin/tree/main'
+                    }
+                }
+            }
+            androidDebug {
+                artifact javadocJar
+                pom {
+                    name = PUBLISH_ARTIFACT_ID
+                    description = 'Generate strings (fractional indices) that can be used as sorting keys.'
+                    url = 'https://github.com/darvelo/fractional-indexing-kotlin'
+                    licenses {
+                        license {
+                            name = 'Creative Commons Zero v1.0 Universal'
+                            url = 'https://github.com/darvelo/fractional-indexing-kotlin/blob/main/LICENSE'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'darvelo'
+                            name = 'David Arvelo'
+                            email = 'david@davidarvelo.com'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:github.com/darvelo/fractional-indexing-kotlin.git'
+                        developerConnection = 'scm:git:ssh://github.com/darvelo/fractional-indexing-kotlin.git'
+                        url = 'https://github.com/darvelo/fractional-indexing-kotlin/tree/main'
+                    }
+                }
+            }
+        }
+    }
+}
+
 afterEvaluate {
     publishing {
         publications {
+            linuxX64(MavenPublication) {
+                artifact javadocJar
+                pom {
+                    name = PUBLISH_ARTIFACT_ID
+                    description = 'Generate strings (fractional indices) that can be used as sorting keys.'
+                    url = 'https://github.com/darvelo/fractional-indexing-kotlin'
+                    licenses {
+                        license {
+                            name = 'Creative Commons Zero v1.0 Universal'
+                            url = 'https://github.com/darvelo/fractional-indexing-kotlin/blob/main/LICENSE'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'darvelo'
+                            name = 'David Arvelo'
+                            email = 'david@davidarvelo.com'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:github.com/darvelo/fractional-indexing-kotlin.git'
+                        developerConnection = 'scm:git:ssh://github.com/darvelo/fractional-indexing-kotlin.git'
+                        url = 'https://github.com/darvelo/fractional-indexing-kotlin/tree/main'
+                    }
+                }
+            }
+            macosX64(MavenPublication) {
+                artifact javadocJar
+                pom {
+                    name = PUBLISH_ARTIFACT_ID
+                    description = 'Generate strings (fractional indices) that can be used as sorting keys.'
+                    url = 'https://github.com/darvelo/fractional-indexing-kotlin'
+                    licenses {
+                        license {
+                            name = 'Creative Commons Zero v1.0 Universal'
+                            url = 'https://github.com/darvelo/fractional-indexing-kotlin/blob/main/LICENSE'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'darvelo'
+                            name = 'David Arvelo'
+                            email = 'david@davidarvelo.com'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:github.com/darvelo/fractional-indexing-kotlin.git'
+                        developerConnection = 'scm:git:ssh://github.com/darvelo/fractional-indexing-kotlin.git'
+                        url = 'https://github.com/darvelo/fractional-indexing-kotlin/tree/main'
+                    }
+                }
+            }
+            iosSimulatorArm64(MavenPublication) {
+                artifact javadocJar
+                pom {
+                    name = PUBLISH_ARTIFACT_ID
+                    description = 'Generate strings (fractional indices) that can be used as sorting keys.'
+                    url = 'https://github.com/darvelo/fractional-indexing-kotlin'
+                    licenses {
+                        license {
+                            name = 'Creative Commons Zero v1.0 Universal'
+                            url = 'https://github.com/darvelo/fractional-indexing-kotlin/blob/main/LICENSE'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'darvelo'
+                            name = 'David Arvelo'
+                            email = 'david@davidarvelo.com'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:github.com/darvelo/fractional-indexing-kotlin.git'
+                        developerConnection = 'scm:git:ssh://github.com/darvelo/fractional-indexing-kotlin.git'
+                        url = 'https://github.com/darvelo/fractional-indexing-kotlin/tree/main'
+                    }
+                }
+            }
+            iosArm64(MavenPublication) {
+                artifact javadocJar
+                pom {
+                    name = PUBLISH_ARTIFACT_ID
+                    description = 'Generate strings (fractional indices) that can be used as sorting keys.'
+                    url = 'https://github.com/darvelo/fractional-indexing-kotlin'
+                    licenses {
+                        license {
+                            name = 'Creative Commons Zero v1.0 Universal'
+                            url = 'https://github.com/darvelo/fractional-indexing-kotlin/blob/main/LICENSE'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'darvelo'
+                            name = 'David Arvelo'
+                            email = 'david@davidarvelo.com'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:github.com/darvelo/fractional-indexing-kotlin.git'
+                        developerConnection = 'scm:git:ssh://github.com/darvelo/fractional-indexing-kotlin.git'
+                        url = 'https://github.com/darvelo/fractional-indexing-kotlin/tree/main'
+                    }
+                }
+            }
+            iosX64(MavenPublication) {
+                artifact javadocJar
+                pom {
+                    name = PUBLISH_ARTIFACT_ID
+                    description = 'Generate strings (fractional indices) that can be used as sorting keys.'
+                    url = 'https://github.com/darvelo/fractional-indexing-kotlin'
+                    licenses {
+                        license {
+                            name = 'Creative Commons Zero v1.0 Universal'
+                            url = 'https://github.com/darvelo/fractional-indexing-kotlin/blob/main/LICENSE'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'darvelo'
+                            name = 'David Arvelo'
+                            email = 'david@davidarvelo.com'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:github.com/darvelo/fractional-indexing-kotlin.git'
+                        developerConnection = 'scm:git:ssh://github.com/darvelo/fractional-indexing-kotlin.git'
+                        url = 'https://github.com/darvelo/fractional-indexing-kotlin/tree/main'
+                    }
+                }
+            }
+            js(MavenPublication) {
+                artifact javadocJar
+                pom {
+                    name = PUBLISH_ARTIFACT_ID
+                    description = 'Generate strings (fractional indices) that can be used as sorting keys.'
+                    url = 'https://github.com/darvelo/fractional-indexing-kotlin'
+                    licenses {
+                        license {
+                            name = 'Creative Commons Zero v1.0 Universal'
+                            url = 'https://github.com/darvelo/fractional-indexing-kotlin/blob/main/LICENSE'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'darvelo'
+                            name = 'David Arvelo'
+                            email = 'david@davidarvelo.com'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:github.com/darvelo/fractional-indexing-kotlin.git'
+                        developerConnection = 'scm:git:ssh://github.com/darvelo/fractional-indexing-kotlin.git'
+                        url = 'https://github.com/darvelo/fractional-indexing-kotlin/tree/main'
+                    }
+                }
+            }
+            jvm(MavenPublication) {
+                artifact javadocJar
+                pom {
+                    name = PUBLISH_ARTIFACT_ID
+                    description = 'Generate strings (fractional indices) that can be used as sorting keys.'
+                    url = 'https://github.com/darvelo/fractional-indexing-kotlin'
+                    licenses {
+                        license {
+                            name = 'Creative Commons Zero v1.0 Universal'
+                            url = 'https://github.com/darvelo/fractional-indexing-kotlin/blob/main/LICENSE'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'darvelo'
+                            name = 'David Arvelo'
+                            email = 'david@davidarvelo.com'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:github.com/darvelo/fractional-indexing-kotlin.git'
+                        developerConnection = 'scm:git:ssh://github.com/darvelo/fractional-indexing-kotlin.git'
+                        url = 'https://github.com/darvelo/fractional-indexing-kotlin/tree/main'
+                    }
+                }
+            }
             release(MavenPublication) {
                 groupId PUBLISH_GROUP_ID
                 artifactId PUBLISH_ARTIFACT_ID
@@ -36,7 +281,7 @@ afterEvaluate {
 //                    from components.java
 //                }
 
-                artifact androidSourcesJar
+                artifact javadocJar
 
                 pom {
                     name = PUBLISH_ARTIFACT_ID
@@ -68,9 +313,9 @@ afterEvaluate {
 
 signing {
     useInMemoryPgpKeys(
-            rootProject.ext["signing.keyId"],
-            rootProject.ext["signing.key"],
-            rootProject.ext["signing.password"],
+            rootProject.ext["signing.keyId"] as String,
+            rootProject.ext["signing.key"] as String,
+            rootProject.ext["signing.password"] as String,
     )
     sign publishing.publications
 }
