@@ -1,3 +1,5 @@
+![Maven Central](https://img.shields.io/maven-central/v/com.davidarvelo/fractional-indexing)
+
 # Fractional Indexing in Kotlin
 
 Based on [Implementing Fractional Indexing](https://observablehq.com/@dgreensp/implementing-fractional-indexing) by [David Greenspan](https://github.com/dgreensp).
