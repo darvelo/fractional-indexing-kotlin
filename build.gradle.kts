@@ -5,7 +5,7 @@ plugins {
 }
 
 ext["PUBLISH_GROUP_ID"] = "com.davidarvelo"
-ext["PUBLISH_VERSION"] = "3.2.1"
+ext["PUBLISH_VERSION"] = "3.2.2"
 ext["PUBLISH_ARTIFACT_ID"] = "fractional-indexing"
 
 apply(from = "${rootDir}/scripts/publish-root.gradle")
@@ -127,7 +127,7 @@ kotlin {
 android {
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml") // Create AndroidManifest.xml and provide path to it
     namespace = "com.davidarvelo"
-    compileSdk = 33
+    compileSdk = 34
 
     kotlin {
         jvmToolchain(11)
@@ -138,7 +138,7 @@ android {
     }
     defaultConfig {
         minSdk = 23
-        targetSdk = 33
+        targetSdk = 34
     }
     buildTypes {
         getByName("debug") {
@@ -147,7 +147,11 @@ android {
         }
         getByName("release") {
 //            namespace = "com.davidarvelo.fractional-indexing-android"
-            isMinifyEnabled = true
+            isMinifyEnabled = false
+//            proguardFiles(
+//                getDefaultProguardFile("proguard-android-optimize.txt"),
+//                "proguard-rules.pro"
+//            )
         }
     }
 }
